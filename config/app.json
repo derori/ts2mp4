@@ -1,0 +1,10 @@
+{
+    "dir" : {
+        "to" : "/smb/ts2mp4/",
+        "from" : "/smb/ts/"
+    },
+    "encoder" : {
+        "bin" : "/usr/local/bin/HandBrakeCLI",
+        "param" : "-i ${INPUT} -o ${OUTPUT} --preset=\"High Profile\""
+    }
+}
