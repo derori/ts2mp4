@@ -15,7 +15,7 @@ use TS2MP4::Config;
 
 my $C = TS2MP4::Config->instance()->getApp();
 
-
+warn Dumper $C;
 #warn Dumper $config->{dir}->{to};
 #my $config = $C->getApp();
 
