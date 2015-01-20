@@ -10,7 +10,7 @@ use Path::Class;
 
 my $date = $ARGV[0];
 $date =~ s/^20//;
-my $delete_flg = $ARGV[1] eq "--delete" 1 : 0;
+my $delete_flg = $ARGV[1] eq "--delete" ? 1 : 0;
 
 
 my $C = {
@@ -34,7 +34,7 @@ while(my $file = $dir->next) {
         $c =~ s/\$\{OUTPUT\}/$C->{dir}->{to}\/$to/;
         warn $c;
         `$c`;
-        if($delete_flg) unlink $file;
+        unlink $file if($delete_flg);
 
     }
 
