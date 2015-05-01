@@ -18,24 +18,23 @@ my $C = {
               "to" => "/smb/ts2m4v"
           },
     "cli" => '/usr/local/bin/HandBrakeCLI -i "${INPUT}" -o "${OUTPUT}" --preset="High Profile"',
-    "file_extension" => "mp4"
+    "file_extension" => "m4v"
 };
 
 my $dir = dir($C->{dir}->{from});
 while(my $file = $dir->next) {
     next if $file eq $dir or $file->resolve eq $dir->parent; # カレントと１つ上のディレクトリを除外
 
-    if($file =~ /\[$date-/){
-        my $to = $file->basename;
-        $to =~ s/m2ts$/mp4/;
+    if($file =~ /\[$date/){
+        next if(! -f $file);
 
+        my $to = $file->basename;
+        $to =~ s/m2ts$/m4v/;
         my $c = $C->{cli};
         $c =~ s/\$\{INPUT\}/$file/;
         $c =~ s/\$\{OUTPUT\}/$C->{dir}->{to}\/$to/;
-        warn $c;
-        `$c`;
+       `$c`;
         unlink $file if($delete_flg);
-
     }
 
 
